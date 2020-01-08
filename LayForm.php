@@ -312,7 +312,7 @@ class LayForm {
      */
     public static function option ($title, $value = null, $param = []) {
         $html = '';
-        $html .= '<option value="' . (!isNull($value) ? $value : $title) . '"';
+        $html .= '<option value="' . (!self::isNull($value) ? $value : $title) . '"';
         $html .= self::param($param);
         $html .= '>' . $title . '</option>';
         return $html;
@@ -342,7 +342,7 @@ class LayForm {
                 $html .= '<optgroup label="' . $v['label'] . '">';
                     if (is_array($v['option']) && $v['option']) {
                         foreach ($v['option'] as $val) {
-                            $html .= '<option value="' . (!isNull($val['value']) ? $val['value'] : $val['title']) . '"';
+                            $html .= '<option value="' . (!self::isNull($val['value']) ? $val['value'] : $val['title']) . '"';
                             if (isset($val['param'])) {
                                 $html .= self::param($val['param']);
                             }
@@ -489,5 +489,19 @@ class LayForm {
             }
         }
         return $html;
+    }
+
+    /**
+     * 检测空
+     *
+     * @param [type] $str
+     * @return boolean
+     */
+    protected static function isNull ($str) {
+        if ($str == '0' || $str == 0) { return false; }
+        if ($str == '' || is_null($str) || empty($str)) {
+            return true;
+        }
+        return false;
     }
 }
