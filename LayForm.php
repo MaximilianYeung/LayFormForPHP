@@ -470,6 +470,31 @@ class LayForm {
         $html .= '</div>';
         return $html;
     }
+
+    /**
+     * 按钮组
+     * LayForm::buttonGroup([
+     *      ['title' => '确定', 'param' => ['lay-submit']],
+     *      ['title' => '返回', 'param' => ['type' => 'button', 'onclick' => 'window.history.go(-1)']],
+     *  ])
+     * @param array $button
+     * @return void
+     */
+    public static function buttonGroup ($button = []) {
+        $html = '';
+        $html .= '<div class="layui-form-item">';
+        $html .= '<div class="layui-input-block">';
+        if ($button) {
+            foreach ($button as $v) {
+                $html .= '<button class="layui-btn" ';
+                $html .= self::param($v['param']);
+                $html .='>' . $v['title'] . '</button>';
+            }
+        }
+        $html .= '</div>';
+        $html .= '</div>';
+        return $html;
+    }
     
     /**
      * 组合参数
